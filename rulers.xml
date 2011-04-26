@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenRuler>
+<RulerTypes>
+<class>net.sf.battlefieldjava.samples.first.MyRuler</class>
+<description>Brett's</description>
+</RulerTypes>
+<RulerTypes>
+<class>net.sf.battlefieldjava.samples.sam.MyRuler</class>
+<description>Sam's</description>
+</RulerTypes>
+</OpenRuler>

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html template="true">
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>template</title>
+  <meta content="S. Brett Sutton" name="author">
+</head>
+<body>
+<table>
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"> <a href="index.html">Overview</a><br>
+      <a href="Features.html">Features</a><br>
+      <a href="http://battlefieldjava.sourceforge.net">Download</a><br>
+      <a href="sourcecode.html">Source Code</a><br>
+      <a href="installing.html">Installing</a><br>
+      <a href="rules.html">Rules</a><br>
+      <a href="playing.html">Playing</a><br>
+      <a href="developingruler.html">Developing
+a Ruler</a><br>
+      <a href="contributing.html">Contributing</a><br>
+      <a href="faq.html">FAQ</a><br>
+      <br>
+      </td>
+      <td style="vertical-align: top;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <br>
+      <br>
+      <h1><span editable="true" id="Heading">Heading</span></h1>
+      <code> </code><span editable="true" id="Body">Body</span>
+      <h1><code></code><code></code></h1>
+      <h1><code></code></h1>
+      <h1><code></code></h1>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+</body>
+</html>

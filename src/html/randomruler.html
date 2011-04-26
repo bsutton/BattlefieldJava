@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>RandomRuler Sample</title>
+</head>
+<body>
+<table>
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"> <a href="index.html">Overview</a><br>
+      <a href="Features.html">Features</a><br>
+      <a href="http://sourceforge.net/projects/battlefieldjava">Download</a><br>
+      <a href="sourcecode.html">Source Code</a><br>
+      <a href="installing.html">Installing</a><br>
+      <a href="rules.html">Rules</a><br>
+      <a href="playing.html">Playing</a><br>
+      <a href="developingruler.html">Developing
+a Ruler</a><br>
+      <a href="contributing.html">Contributing</a><br>
+      <a href="faq.html">FAQ</a><br>
+      <br>
+      </td>
+      <td style="vertical-align: top;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <br>
+      <br>
+      <h1>Sample Random Ruler</h1>
+Sample ruler which moves the rulers peasants and knights around at
+random.<br>
+      <br>
+      <code>package </code><code>net.sourceforge.battlefieldjava.samples</code><code>;<br>
+      <br>
+import java.awt.Color;<br>
+import java.awt.Point;<br>
+import java.util.HashMap;<br>
+import java.util.Random;<br>
+      <br>
+import net.sourceforge.battlefieldjava.engine.GameSettings;<br>
+import net.sourceforge.battlefieldjava.engine.Location;<br>
+import net.sourceforge.battlefieldjava.ruler.ICastle;<br>
+import net.sourceforge.battlefieldjava.ruler.IKnight;<br>
+import net.sourceforge.battlefieldjava.ruler.IObject;<br>
+import net.sourceforge.battlefieldjava.ruler.IPeasant;<br>
+import net.sourceforge.battlefieldjava.ruler.ISubject;<br>
+import net.sourceforge.battlefieldjava.ruler.Ruler;<br>
+import net.sourceforge.battlefieldjava.ruler.World;<br>
+      <br>
+public class RandomRuler extends Ruler<br>
+{<br>
+      <br>
+&nbsp;&nbsp;&nbsp; Random&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; random&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; = new Random();<br>
+      <br>
+&nbsp;&nbsp;&nbsp; public MyRuler(World world, Color color)<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+super(world, color);<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; /** Each ruler must supply a name */<br>
+&nbsp;&nbsp;&nbsp; public String getRulerName()<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; return
+"Random";<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; /** Each ruler must supply a school name
+(anything
+will do, but I would recommend using <br>
+&nbsp;&nbsp;&nbsp;&nbsp; * a domain name if you have
+one otherwise your
+email address) <br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public String getSchoolName()<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; return
+"Sampler";<br>
+&nbsp;&nbsp;&nbsp; }<br>
+      <br>
+&nbsp;&nbsp;&nbsp; /** Called by the engine each time its
+your rulers
+turn to move.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * You may move each of your
+pieces once and
+only once.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; * Knights move either move or
+capture but not
+both.<br>
+&nbsp;&nbsp;&nbsp;&nbsp; */<br>
+&nbsp;&nbsp;&nbsp; public void orderSubjects(int
+lastMoveTime)<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Get
+the list of my peasants<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+IPeasant[] peasants = this.getPeasants();<br>
+      <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // loop
+through them<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; for (int
+i = 0; i &lt; peasants.length; i++)<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; IPeasant peasant = peasants[i];<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp; // determine a
+random direction to move in<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; int dir = getRandomDirection();<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp; // and move the
+peasant in that direction<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; // In debug
+mode move will throw an exeption if you try<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp; // to move off the
+board or to a location currently occupied<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp; // by another
+piece.<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; </code><code>this.move(peasant,
+dir);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; }<br>
+      </code><code><br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // Do the
+same stuff for each of
+the my rulers knights.<br>
+      </code><code>&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; IKnight[] knights = this.getKnights();<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; for (int
+i = 0; i &lt; knights.length; i++)<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; IKnight knight = knights[i];<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; int dir = getRandomDirection();<br>
+      </code><code>&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; </code><code>this.move(knight,
+dir);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; }<br>
+      </code>&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp; }<br>
+      <code><br>
+&nbsp;&nbsp;&nbsp; // Generate a random direction (value
+between 1 and
+8 inclusive).<br>
+&nbsp;&nbsp;&nbsp; int getRandomDirection()<br>
+&nbsp;&nbsp;&nbsp; {<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; return
+(Math.abs(random.nextInt(8)) + 1;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      <br>
+      </code><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

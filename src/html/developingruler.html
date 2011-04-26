@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>developingruler.html</title>
+</head>
+<body>
+<table>
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 118px;"> <a
+ href="index.html">Overview</a><br>
+      <a href="Features.html">Features</a><br>
+      <a href="http://sourceforge.net/projects/battlefieldjava">Download</a><br>
+      <a href="sourcecode.html">Source Code</a><a href="sourcecode.html"></a><br>
+      <a href="installing.html">Installing</a><br>
+      <a href="rules.html">Rules</a><br>
+      <a href="playing.html">Playing</a><br>
+      <a href="developingruler.html">Developing
+a Ruler</a><br>
+      <a href="contributing.html">Contributing</a><br>
+      <a href="faq.html">FAQ</a><br>
+      </td>
+      <td style="width: 752px;"> <br>
+      <h1>Developing a Ruler</h1>
+      <br>
+To become a particpant in the game you first need to create a Ruler.
+The Ruler is your proxy, in that during the game the Ruler is
+responsible for formulating battle strategies and moving/controlling
+pieces
+as you have programmed it to. To create a simple ruler requires very
+little coding. The <a href="randomruler.html">random ruler</a>
+is an
+example of a very simple Ruler which
+moves its Subjects around the board randomly. Start by creating a
+class derived from <span style="font-weight: bold;">net.sourceforge.battlefieldjava.ruler.Ruler</span>.
+You
+need to provide an implementation for each of the following methods:<br>
+      <ul>
+        <li>public String
+getRulerName()</li>
+        <li>public String
+getSchoolName()</li>
+        <li>public void
+orderSubjects(int lastMoveTime)</li>
+      </ul>
+The methods getRulerName and getSchoolName just need to return a string
+which helps to identify your ruler. These names are displayed when your
+ruler is loaded into the gaming environment, so try to think of
+something that won't be too embarassing ;)<br>
+      <br>
+The <span style="font-style: italic;">orderSubjects</span>
+method is
+where all of the action happens. Each round, <span
+ style="font-style: italic;">orderSubjects</span>
+will be called
+once for each ruler loaded into the game,
+when it's their turn to move. During the call to <span
+ style="font-style: italic;">orderSubjects</span>
+you
+need to move any pieces that you want to move during that round. <br>
+The base Ruler class provides a set of methods which allow you to get
+access to your set of pieces:<br>
+      <code><span style="font-style: italic;">IPeasant[]getPeasants()</span>
+- returns an array of all your peasants (that are still alive).<br>
+      </code><code><span style="font-style: italic;">IKnight[]
+getKnights()</span>
+- returns an array of all your knights.<br>
+      <span style="font-style: italic;">ISubject[]
+getSubjects()</span> -
+returns an array of all your knights and peasants.<br>
+      <span style="font-style: italic;">IPiece[]
+getPieces()</span> - returns
+an array of all your knights, peasants and castles.<br>
+      </code><br>
+To move a subject just call <code><span
+ style="font-family: Courier New,Courier,monospace;">'this.move(subject,
+direction)'<span style="font-family: Times New Roman,Times,serif;"> <big>from
+within the </big></span><big><span
+ style="font-style: italic; font-family: Times New Roman,Times,serif;">orderSubjects</span><span
+ style="font-family: Times New Roman,Times,serif;">
+method. <br>
+      </span></big></span></code><code><span
+ style="font-family: Times New Roman,Times,serif;"></span></code><code><br>
+      </code><code style="font-family: Times New Roman,Times,serif;">A
+Subject (knight or peasant) can move in any one of eight directions on
+the board. The
+directions are defined as points on the compass where North is up the
+screen, South down, East is to the right of the Screen and West the
+left. To move a Subject pass in the appropriate value to the <span
+ style="font-style: italic;">move</span>
+method which corresponds to
+the desired point on the compass.</code><br
+ style="font-family: Times New Roman,Times,serif;">
+      <code style="font-family: Times New Roman,Times,serif;"></code><br
+ style="font-family: Times New Roman,Times,serif;">
+      <code style="font-family: Times New Roman,Times,serif;">The
+following
+eight points and their equivalent value is as follows:</code><br>
+      <code></code>
+      <table style="width: 100%; text-align: left;" border="0"
+ cellpadding="2" cellspacing="2">
+        <tbody>
+          <tr>
+            <td style="width: 275px;">
+            <table style="text-align: left; width: 218px;" border="1"
+ cellpadding="2" cellspacing="2">
+              <tbody>
+                <tr>
+                  <td>Direction<br>
+                  </td>
+                  <td>Value<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 115px;">North<br>
+                  </td>
+                  <td style="width: 85px;">1<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 115px;">North
+East<br>
+                  </td>
+                  <td style="width: 85px;">2<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 115px;">East<br>
+                  </td>
+                  <td style="width: 85px;">3<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 115px;">South
+East<br>
+                  </td>
+                  <td style="width: 85px;">4<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 115px;">South<br>
+                  </td>
+                  <td style="width: 85px;">5<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 115px;">South
+West<br>
+                  </td>
+                  <td style="width: 85px;">6<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 115px;">West<br>
+                  </td>
+                  <td style="width: 85px;">7<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 115px;">North
+West<br>
+                  </td>
+                  <td style="width: 85px;">8<br>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 115px;">No
+Movement<br>
+                  </td>
+                  <td style="width: 85px;">0<br>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            </td>
+            <td style="width: 495px;"><img
+ style="width: 261px; height: 215px;" alt="Compass"
+ src="images/compass.JPG"><br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <h2>Exploring the Battlefield</h2>
+      <code></code><code>To
+create an effective ruler its no use just moving
+your Subject around, you need to be able to explore the battlefield to
+determine the disposition of your enemies. <br>
+      <br>
+      </code><code>The
+battlefield is made up of a grid, each square on the grid is
+represented
+by a Location which is defined by its x and y co-ordinates (zero
+based). <br>
+      </code><br>
+The <span style="font-style: italic;">World</span>
+class provides a
+number of methods to help you exploring the Battlefield.<br>
+      <code>IRuler[]
+getOtherRulers() -
+returns an array of all the enemy
+rulers.<br>
+ICastle[] getOtherCasltes() - returns an array of all the enemy castles
+on the board.<br>
+      </code><code><span style="font-style: italic;">IPeasant[]
+getOtherPeasants()</span> - returns
+an array of all enemy peasants.<br>
+      </code><code><span style="font-style: italic;">IKnight[]
+getOtherKnights()</span> - returns
+an array of all </code><code>enemy</code><code>
+knights.<br>
+      <span style="font-style: italic;">ISubject[]
+getOtherSubjects()</span>
+- returns an array of all </code><code>enemy</code><code>
+knights and
+peasants.<br>
+      <span style="font-style: italic;">IPiece[]
+getOtherPieces()</span> -
+returns an array of all </code><code>enemy</code><code>
+knights,
+peasants and castles.<br>
+      </code><br>
+      <code></code>Each
+piece is located on the grid, you can determine its
+location by calling <span style="font-style: italic;">IPiece.getLocation().<br>
+      <br>
+      </span>You can also directly
+obtain
+a location at a given x, y
+co-ordinate by calling <span style="font-style: italic;">World.getLocation(x,y)</span>.<br>
+Once you have a <span style="font-style: italic;">Location</span>
+you
+can determine its owner by calling&nbsp; <span
+ style="font-style: italic;">location.getOwner()</span>
+and its
+occupant by calling <span style="font-style: italic;">location.getOccupant()</span>.<br>
+      <br>
+The battlefield size can be determined from <span
+ style="font-style: italic;">World.WIDTH </span>and <span
+ style="font-style: italic;">World.HEIGHT. </span>The co-ordinate
+system is zero base so valid locations are in the range for x of 0 to <span
+ style="font-style: italic;">World.WIDTH -1 </span>and
+for y of 0 to <span style="font-style: italic;">World.HEIGHT - 1</span>
+where 0, 0 is in
+the top-left hand corner of the grid.<br>
+      <br>
+      <br>
+Class Hierarchy<br>
+      <br>
+      <img style="width: 330px; height: 292px;" alt="Class Diagram"
+ src="images/classdiagram.PNG"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

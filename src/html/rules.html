@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Rules</title>
+</head>
+<body>
+<table>
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 118px;"> <a
+ href="index.html">Overview</a><br>
+      <a href="Features.html">Features</a><br>
+      <a href="http://sourceforge.net/projects/battlefieldjava">Download</a><br>
+      <a href="sourcecode.html">Source Code</a><br>
+      <a href="installing.html">Installing</a><br>
+      <a href="/rules.html">Rules</a><br>
+      <a href="playing.html">Playing</a><br>
+      <a href="developingruler.html">Developing
+a Ruler</a><br>
+      <a href="contributing.html">Contributing</a><br>
+      <a href="faq.html">FAQ</a><br>
+      <br>
+      </td>
+      <td style="vertical-align: top; width: 835px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <br>
+      <br>
+      <h1>The Rules</h1>
+The Battlefield consists of a two dimensional&nbsp; grid&nbsp;
+apon which the players move their pieces. Each player is refererred to
+as a <br>
+Ruler. The game utilises only three types of pieces; Castles, Knights
+and Peasants. Castles are fixed position pieces which occupy a single
+location on the grid. The Castles generate additional Peasants and
+Knights (referred to as Subjects) as the game progresses. Normally each
+Ruler starts with a single Castle on the board and a number of Peasants
+and Knights. The game is played across a number of rounds; during each
+round each Ruler is given a turn during which he may move each of his
+Subjects. Subjects may only move one place during each round to any one
+of the eight
+adjacent locations, providing the location is not already occupied. As
+Peasants are moved they capture each location on the grid through which
+they move. As Knights move they have the ability to attack the pieces
+of the other rulers. A Knight may either move or attack in a single
+round but not both. A Knight may only attack a piece which occupies one
+of the locations adjacent to the Knight. When a Knight attacks a piece,
+the attack reduces the Strength of the attacked piece by a random
+amount (between 15 and 30), if the piece's strength drops below zero
+then the piece is killed or in the case of&nbsp; a Castle captured.
+When a Knight captures or kills a piece the Knights strength increases
+by 20. At the start of each round each Ruler's Castle may generate
+additional Peasants or Knights. The number of Subjects created is
+dependant on the number of locations owned by the Ruler. The Ruler
+scores each time a location or piece is captured.<br>
+      <br>
+That is the complete set of rules to the game and as such Battlefield
+Java is very simple to learn. The hard bit is to design a Ruler which
+operates within the set of rules more successfully than anyone elses
+Ruler, as measured by the final score.<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="makejar" default="all" basedir="..\">
+	<target name="makejar_battlefield">
+		<jar jarfile="jar\battlefieldjava.jar" manifest="jar\manifest.mf">
+			<fileset dir="classes" includes="**/*.class"/>
+			<fileset dir="classes" includes="**/*.png"/>
+			<fileset dir="classes" includes="**/*.jpg"/>
+		</jar>
+	</target>	
+	<target name="all" depends="makejar_battlefield"/>
+</project>
+
+
